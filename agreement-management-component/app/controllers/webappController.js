@@ -4,6 +4,7 @@ const DataSharingContract = require("./../models/DataSharingContract.model");
 const Service = require("./../models/Service.model");
 const Dataset = require("./../models/Dataset.model");
 const TermsOfUse = require("./../models/TermsOfUse.model");
+const { buildPermission } = require("../utils/ordl");
 
 exports.home = async (req, res, next) => {
 	res.render("home");
@@ -53,26 +54,31 @@ exports.signContract = async (req, res, next) => {
 exports.generateContract = async (req, res, next) => {
 	const serviceImport = await Service.findById(
 		"611e2d860fa82d2938d3c7bb"
-	).select("name id governance purposes");
+	).select("name id governance purposes uri");
 	const serviceExport = await Service.findById(
 		"611e2d6d0fa82d2938d3c7b8"
-	).select("name id governance");
+	).select("name id governance uri");
 
 	const purpose = await Purpose.findById(serviceImport.purposes[0]).select(
-		"name id description"
+		"name id description uri"
 	);
 
 	const datatypes = await DataType.find({
 		provenance: serviceExport.id,
-	}).select("name id description");
+	}).select("name id description uri");
+
+	console.log(purpose.uri)
 
 	const purposes = [purpose];
+
+	const permission = buildPermission("Agreement", datatypes[0].uri, serviceExport.uri, serviceImport.uri, "use", purpose.uri);
 
 	res.render("contract-generation", {
 		serviceImport,
 		serviceExport,
 		purposes,
 		datatypes,
+		permission
 	});
 };
 

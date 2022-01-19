@@ -1,0 +1,13 @@
+{
+	"@context": "http://www.w3.org/ns/odrl.jsonld",
+	"@type": "Offer",
+	"comment": "Offer class for Rules that are being offered from assigner parties, used to make available Policies to a wider audience but does not grant any Rules. Offer type must have one assigner property of type party.",
+	"uid": "http://visionstrust.com/policy:0001",
+	"permission": [
+		{
+			"target": "http://visionstrust.com/asset:0101",
+			"assigner": "http://visionstrust.com/party:dataprovider",
+			"action": "play"
+		}
+	]
+}

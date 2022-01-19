@@ -84,4 +84,8 @@ const schema = new Schema({
     },
 });
 
+schema.virtual('uri').get(function() {
+    return `${process.env.RESOURCES_BASE_URL}/asset/${this._id}`;
+});
+
 module.exports = mongoose.model("DataType", schema);

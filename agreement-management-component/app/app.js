@@ -13,6 +13,7 @@ const datatypes = require("./routes/datatypes");
 const purposes = require("./routes/purposes");
 const services = require("./routes/services");
 const termsOfUse = require("./routes/termsOfUse");
+const resources = require("./routes/odrlResources");
 
 dotenv.config();
 
@@ -46,8 +47,9 @@ app.use(`${api}/datasets`, datasets);
 app.use(`${api}/purposes`, purposes);
 app.use(`${api}/services`, services);
 app.use(`${api}/termsofuse`, termsOfUse);
+app.use(`${api}/resources`, resources);
 
-let port = process.env.PORT || 4050;
+const port = process.env.PORT || 4050;
 app.listen(port, () => {
   console.log("App running on port: " + port);
 });

@@ -1,0 +1,16 @@
+{
+	"@context": "http://www.w3.org/ns/odrl.jsonld",
+	"@type": "Agreement",
+	"uid": "http://visionstrust.com/policy:0004",
+	"permission": [
+		{
+			"target": {
+                "@type": "AssetCollection",
+                "uid": "http://visionstrust.com/assetcollection:0001"
+            },
+			"assigner": "http://visionstrust.com/party:dataprovider",
+			"assignee": "http://visionstrust.com/party:datauser",
+			"action": "use"
+		}
+	]
+}
